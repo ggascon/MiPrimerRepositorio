@@ -1,0 +1,23 @@
+import java.security.InvalidParameterException;
+
+public class Calculadora {
+    public static void main(String[] args) {
+        if (args.length != 3) {
+            System.out.println("Uso: Calculadora.java <operación> <num1> <num2>");
+            System.exit(1);
+        }
+
+        String operacion = args[0];
+        double num1 = Double.parseDouble(args[1]);
+        double num2 = Double.parseDouble(args[2]);
+
+        double resultado = switch (operacion) {
+            case "add" -> num1 + num2;
+            case "sub" -> num1 - num2;
+            case "mul" -> num1 * num2;
+            case "div" -> num1 / num2;
+            default -> throw new InvalidParameterException("Operación: " + operacion + " no soportada");
+        };
+        System.out.println(num1 + " " + operacion + " " + num2 + " = " + resultado);
+    }
+}
